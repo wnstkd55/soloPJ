@@ -1,98 +1,186 @@
 package bbs;
 
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
-import common.DBConnPool;
 
-public class BbsDAO extends DBConnPool{
-	
-	public String getDate() {
-		String sql = "select now()";
+
+public class BbsDAO {// 데이터 베이스 접근 객체의 약자
+	private Connection conn;// connection db에 접근하게 해주는 객체
+	private ResultSet rs;
+	public BbsDAO() {
 		try {
-			psmt = con.prepareStatement(sql);
-			rs = psmt.executeQuery();
-			if(rs.next()) {
-				return rs.getString(1);
-			}
-		}catch (Exception e) {
+			String driverName = "oracle.jdbc.driver.OracleDriver";
+			String dbURL = "jdbc:oracle:thin:@localhost:1521:xe";
+			String dbID = "hr3";
+			String dbPassword = "1234";
+			Class.forName(driverName);
+			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return ""; //데이터베이스 오류
 	}
-	//게시글 번호 부여 메소드
-		public int getNext() {
-			//현재 게시글을 내림차순으로 조회하여 가장 마지막 글의 번호를 구한다
-			String sql = "select bbsID from bbs order by bbsID desc";
-			try {
-				psmt = con.prepareStatement(sql);
-				rs = psmt.executeQuery();
-				if(rs.next()) {
-					return rs.getInt(1) + 1;
-				}
-				return 1; //첫 번째 게시물인 경우
-			}catch (Exception e) {
-				e.printStackTrace();
-				System.out.println("글번호 오류");
+//현재의 시간을 가져오는 함수
+	public String getDate() {
+		//String SQL = "Select GETDATE()";
+		//
+		 String SQL="SELECT to_char(sysdate,'yyyy-mm-dd') FROM BBS";
+		// Select GETDATE();
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return rs.getString(1);
 			}
-			return -1; //데이터베이스 오류
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
-		//글쓰기 메소드
-		public int write(String bbsTitle, String userID, String bbsContent) {
-			String sql = "insert into bbs values(?, ?, ?, ?, ?, ?)";
-			try {
-				psmt = con.prepareStatement(sql);
-				psmt.setInt(1, getNext());
-				psmt.setString(2, bbsTitle);
-				psmt.setString(3, userID);
-				psmt.setString(4, getDate());
-				psmt.setString(5, bbsContent);
-				psmt.setInt(6, 1); //글의 유효번호
-				return psmt.executeUpdate();
-			}catch (Exception e) {
-				e.printStackTrace();
-				System.out.println("글쓰기 오류");
+		return "";// 데이터베이스 오류
+	}
+//bbsID 게시글 번호 가져오는 함수
+	public int getNext() {
+		//String SQL = "SELECT bbsID FROM dbo.[BBS] ORDER BY bbsID DESC";
+		String SQL = "SELECT bbsID FROM BBS ORDER BY bbsID DESC";
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(1) + 1;
 			}
-			return -1; //데이터베이스 오류
+			return 1; // 첫번째 게시물인경우
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		//게시글 리스트 메소드
-		public ArrayList<Bbs> getList(int pageNumber){
-			String sql = "select * from bbs where bbsID < ? and bbsAvailable = 1 order by bbsID desc limit 10";
-			ArrayList<Bbs> list = new ArrayList<Bbs>();
-			try {
-				psmt = con.prepareStatement(sql);
-				psmt.setInt(1, getNext() - (pageNumber - 1) * 10);
-				rs = psmt.executeQuery();
-				while(rs.next()) {
-					Bbs bbs = new Bbs();
-					bbs.setBbsID(rs.getInt(1));
-					bbs.setBbsTitle(rs.getString(2));
-					bbs.setUserID(rs.getString(3));
-					bbs.setBbsDate(rs.getString(4));
-					bbs.setBbsContent(rs.getString(5));
-					bbs.setBbsAvailable(rs.getInt(6));
-					list.add(bbs);
-				}
-			}catch (Exception e) {
-				e.printStackTrace();
-				System.out.println("리스트 오류");
+		return -1;// 데이터베이스 오류
+	}
+//글 작성하는 함수
+	public int write(String bbsTitle, String userID, String bbsContent) {
+		String SQL = "INSERT INTO BBS VALUES(?,?,?,?,?,?)";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, getNext());
+			pstmt.setString(2, bbsTitle);
+			pstmt.setString(3, userID);
+			pstmt.setString(4, getDate());
+			pstmt.setString(5, bbsContent);
+			pstmt.setInt(6, 1);
+			/*rs = pstmt.executeQuery();
+			System.out.println(SQL);*/
+			return pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // 데이터베이스 오류
+	}
+	
+	public ArrayList<Bbs> getList(int pageNumber) {
+		
+		String SQL = "SELECT * FROM (SELECT * FROM BBS WHERE bbsID <? and bbsAvailable=1 ORDER BY bbsID DESC) WHERE ROWNUM<=10";
+		
+		//Bbs에서 나오는 걸 보관할수 있는 인스턴스를 생성
+		ArrayList<Bbs> list = new ArrayList<Bbs>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
+			//게시글의 개수에 따라 값으로 나오게 할려고 그래서 6보다 작게 할려고 모든 글자가 다 나오게 할려고 이다. 그래서 일부러 함수를 만든것이다.
+			rs = pstmt.executeQuery();
+			//System.out.println("여기 에러요~");
+			while (rs.next()) {
+				Bbs bbs = new Bbs();
+				bbs.setBbsID(rs.getInt(1));
+				bbs.setBbsTitle(rs.getString(2)); 
+				bbs.setUserID(rs.getString(3));
+				bbs.setBbsDate(rs.getTimestamp(4));
+				bbs.setBbsContent(rs.getString(5));
+				bbs.setBbsAvailable(rs.getInt(6));
+				list.add(bbs);
 			}
-			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public boolean nextPage(int pageNumber) {
+		  String SQL = "select * from (select * from bbs where bbsid <? and bbsAvailable=1 order by bbsID desc) where rownum<=10";
+		ArrayList<Bbs> list = new ArrayList<Bbs>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public Bbs getBbs(int bbsID) {
+		//String SQL = "SELCET * FROM dbo.[BBS] WHERE bbsID = ?";
+		String SQL = "SELECT * FROM BBS WHERE bbsID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, bbsID);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				Bbs bbs = new Bbs();
+				bbs.setBbsID(rs.getInt(1));
+				bbs.setBbsTitle(rs.getString(2));
+				bbs.setUserID(rs.getString(3));
+				//bbs.setBbsTitle(rs.getString(4));
+				bbs.setBbsDate(rs.getTimestamp(4));
+				bbs.setBbsContent(rs.getString(5));
+				bbs.setBbsAvailable(rs.getInt(6));
+
+				return bbs;
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	// 수정 함수
+		public int update(int bbsID, String bbsTitle, String bbsContent) {
+			String SQL = "UPDATE BBS SET bbsTitle = ?, bbsContent = ? WHERE bbsID = ?";
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(SQL);
+				pstmt.setString(1, bbsTitle);
+				pstmt.setString(2, bbsContent);
+				pstmt.setInt(3, bbsID);
+				return pstmt.executeUpdate();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return -1; // 데이터베이스 오류
 		}
 		
-		//페이징 처리 메소드
-		public boolean nextPage(int pageNumber) {
-			String sql = "select * from bbs where bbsID < ? and bbsAvailable = 1";
+		// 삭제 함수
+		public int delete(int bbsID) {
+			String SQL = "UPDATE BBS SET bbsAvailable = 0 WHERE bbsID = ?";
 			try {
-				psmt = con.prepareStatement(sql);
-				psmt.setInt(1, getNext() - (pageNumber - 1) * 10);
-				rs = psmt.executeQuery();
-				if(rs.next()) {
-					return true;
-				}
-			}catch (Exception e) {
+				PreparedStatement pstmt = conn.prepareStatement(SQL);
+				pstmt.setInt(1, bbsID);
+				return pstmt.executeUpdate();
+
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			return false;
+			return -1; // 데이터베이스 오류
 		}
+	
 }

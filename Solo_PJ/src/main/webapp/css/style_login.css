@@ -1,0 +1,71 @@
+@charset "EUC-KR";
+
+@font-face {
+    font-family: 'ONE-Mobile-POP';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'InkLipquid';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/InkLipquid.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+	font-family: 'InkLipquid';
+}
+
+.head{
+	font-size : 25px;
+	font-weight : bold;
+}
+
+.head .logo{
+	height : 100px;
+	float : left;
+	
+}
+
+.head .logo img{
+	width : 100px;
+	height : 100px;
+}
+
+.loginform{
+	width : 700px;
+	padding-top: 20px;
+	text-align: center;
+	align-items: center;
+	
+}
+
+.bd-placeholder-img {
+       font-size: 1.125rem;
+       text-anchor: middle;
+       -webkit-user-select: none;
+       -moz-user-select: none;
+       user-select: none;
+     }
+	
+     @media (min-width: 768px) {
+       .bd-placeholder-img-lg {
+         font-size: 3.5rem;
+       }
+       .head .logo{
+			height : 200px;
+			padding-top : -50px;	
+		}
+       .head .logo img{
+			width : 300px;
+			height : 300px;
+		}
+		.loginform{
+			width : 700px;
+			padding-top: 20px;
+			text-align: center;
+			padding-left : 30%;
+		}
+     }	
