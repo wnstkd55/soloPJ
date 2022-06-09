@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
+import bbs.Bbs;
 
 
 
@@ -35,9 +38,6 @@ public class UserDAO {
 			System.out.println("Unkonwn error");
 			e.printStackTrace();
 		}
-		
-			
-		
 	}
 	 public int login(String userID, String userPassword) {
 		 String SQL = "SELECT userPassword FROM USER01 WHERE userID = ?";
@@ -54,7 +54,7 @@ public class UserDAO {
 			 if(rs.next()) {
 				 //패스워드 일치한다면 실행
 				 if(rs.getString(1).equals(userPassword)) {
-					 return 1;//로긴성공
+					 return 1;//로그니성공
 				 }else
 					 return 0;//비번 불일치
 			 }return -1;//아이디 없음
@@ -65,18 +65,43 @@ public class UserDAO {
 	 }
 	 
 	 public int join(User user) {
-		 String SQL = "INSERT INTO USER01 VALUES (?,?,?,?,?)";
+		 String SQL = "INSERT INTO USER01 VALUES (?,?,?,?,?,?)";
 		 try {
 			 pstmt = conn.prepareStatement(SQL);
 			 pstmt.setString(1, user.getUserID());
 			 pstmt.setString(2, user.getUserPassword());
 			 pstmt.setString(3, user.getUserName());
-			 pstmt.setString(4, user.getUserGender());
-			 pstmt.setString(5, user.getUserEmail());
+			 pstmt.setString(4, user.getUserEmail());
+			 pstmt.setString(5, user.getUserAddress());
+			 pstmt.setString(6, user.getUserRole());
 			 return pstmt.executeUpdate();
 		 }catch(Exception e) {
 			 e.printStackTrace();
 		 }
 		 return -1;//DB오류
+	 }
+	 
+	 public ArrayList<User> getUList(String userID){
+		 String SQL = "SELECT * FROM USER01 WHERE USERID = ?";
+		 ArrayList<User> ulist = new ArrayList<User>();
+		 try {
+			 pstmt = conn.prepareStatement(SQL);
+			 pstmt.setString(1,"USERID");
+			 rs = pstmt.executeQuery();
+			 
+			 while(rs.next()) {
+				 User user = new User();
+				 user.setUserID(rs.getString(1));
+				 user.setUserPassword(rs.getString(2));
+				 user.setUserName(rs.getString(3));
+				 user.setUserEmail(rs.getString(4));
+				 user.setUserAddress(rs.getString(5));
+				 user.setUserRole(rs.getString(6));
+			 }
+		 }catch(Exception e) {
+			 e.printStackTrace();
+			 System.out.println("유저리스트 오류");
+		 }
+		return ulist;
 	 }
  }

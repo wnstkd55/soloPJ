@@ -10,9 +10,9 @@
 <jsp:setProperty name="user" property="userID" />
 <jsp:setProperty name="user" property="userPassword" />
 <jsp:setProperty name="user" property="userName" />
-<jsp:setProperty name="user" property="userGender" />
 <jsp:setProperty name="user" property="userEmail" />
-
+<jsp:setProperty name="user" property="userAddress" />
+<jsp:setProperty name="user" property="userRole" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +36,7 @@
 		}
 	////
 		if (user.getUserID() == null || user.getUserPassword() == null || user.getUserName() == null
-				|| user.getUserGender() == null || user.getUserEmail() == null) {
+				|| user.getUserAddress() == null || user.getUserEmail() == null || user.getUserRole() == null) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('입력이 안 된 사항이 있습니다.')");
@@ -56,6 +56,7 @@
 			else {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
+				script.println("alert('가입에 성공하였습니다!!')");
 				script.println("location.href = 'main.jsp'");
 				script.println("</script>");
 			}

@@ -59,7 +59,7 @@
 					style="text-align: center; border: 1px solid #dddddd">
 					<thead>
 						<tr>
-							<th colspan="2" style="background-color: #eeeeee; ㄴtext-align:center;">글수정</th>
+							<th colspan="2" style="background-color: #eeeeee; text-align:center;">글수정</th>
 						</tr>
 					</thead>
 					<tbody>

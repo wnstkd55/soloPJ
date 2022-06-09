@@ -27,10 +27,7 @@ public class BbsDAO {// 데이터 베이스 접근 객체의 약자
 	}
 //현재의 시간을 가져오는 함수
 	public String getDate() {
-		//String SQL = "Select GETDATE()";
-		//
-		 String SQL="SELECT to_char(sysdate,'yyyy-mm-dd') FROM BBS";
-		// Select GETDATE();
+		 String SQL="SELECT to_char(sysdate,'YYYY-MM-DD HH24:MI') FROM BBS";
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -46,7 +43,6 @@ public class BbsDAO {// 데이터 베이스 접근 객체의 약자
 	}
 //bbsID 게시글 번호 가져오는 함수
 	public int getNext() {
-		//String SQL = "SELECT bbsID FROM dbo.[BBS] ORDER BY bbsID DESC";
 		String SQL = "SELECT bbsID FROM BBS ORDER BY bbsID DESC";
 		
 		try {
@@ -93,13 +89,12 @@ public class BbsDAO {// 데이터 베이스 접근 객체의 약자
 			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
 			//게시글의 개수에 따라 값으로 나오게 할려고 그래서 6보다 작게 할려고 모든 글자가 다 나오게 할려고 이다. 그래서 일부러 함수를 만든것이다.
 			rs = pstmt.executeQuery();
-			//System.out.println("여기 에러요~");
 			while (rs.next()) {
 				Bbs bbs = new Bbs();
 				bbs.setBbsID(rs.getInt(1));
 				bbs.setBbsTitle(rs.getString(2)); 
 				bbs.setUserID(rs.getString(3));
-				bbs.setBbsDate(rs.getTimestamp(4));
+				bbs.setBbsDate(rs.getString(4));
 				bbs.setBbsContent(rs.getString(5));
 				bbs.setBbsAvailable(rs.getInt(6));
 				list.add(bbs);
@@ -140,7 +135,7 @@ public class BbsDAO {// 데이터 베이스 접근 객체의 약자
 				bbs.setBbsTitle(rs.getString(2));
 				bbs.setUserID(rs.getString(3));
 				//bbs.setBbsTitle(rs.getString(4));
-				bbs.setBbsDate(rs.getTimestamp(4));
+				bbs.setBbsDate(rs.getString(4));
 				bbs.setBbsContent(rs.getString(5));
 				bbs.setBbsAvailable(rs.getInt(6));
 

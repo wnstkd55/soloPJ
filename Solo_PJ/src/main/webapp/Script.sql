@@ -1,10 +1,10 @@
-create table USER(
-	userID varchar(20),
-	userPassword varchar(20),
-	userName varchar(20),
-	userGender varchar(20),
-	userEmail varchar(50),
-	primary key(userID)
+create table user01(
+    userID varchar2(20) primary key,
+    userPassword varchar2(20) not null,
+    userName varchar2(20) not null,
+    userEmail varchar2(30) not null,
+    userAddress varchar2(50),
+    userRole varchar2(10) not null
 );
 
 select * from user01;

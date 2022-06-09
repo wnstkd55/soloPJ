@@ -10,13 +10,16 @@
 <!-- 스타일시트 참조  -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"> 
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
+<link rel="stylesheet" href="../css/style.css">
 <title>jsp 게시판 웹사이트</title>		
 </head>
 <body>
 	<jsp:include page = "head.jsp" flush = "false"/>
 	
 	<div class = "main">
+	<div data-aos="zoom-in">
 		<div class="container">
 			<div class = "img_slide">
 				<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -65,14 +68,18 @@
 				          <a href="#" class="stretched-link">자세히 보기</a>
 				        </div>
 				        <div class="col-auto d-none d-lg-block">
-							<img class="bd-placeholder-img" width="200" height="250" src="./images/p11.png" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%"/>
+							<img class="bd-placeholder-img" width="200" height="250" src="./images/p11.jpg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%"/>
 				        </div>
 				      </div>
 				    </div>
 				 </div>
 			 </div>
 		</div>
+		</div>
 	</div>
+	<script>
+		AOS.init();
+	</script>
 	<jsp:include page = "footer.jsp" flush="false" />
 </body>
 </html>

@@ -14,21 +14,13 @@
     font-style: normal;
 }
 
-.main{
-	font-family: 'ONE-Mobile-POP';
+.board .btn_pv{
+	width: 100px;
+	background-color: orange;
 }
-
-.main .img_slide {
-	margin-bottom: 10px;
-}
-
-.main .img_slide img{
-	width : 100%;
-	height : auto;
-}
-
-.main .sbb{
-	margin: 10px;
+.board .btn_nx{
+	width: 100px;
+	background-color: yellow;
 }
 
 .bd-placeholder-img {
@@ -52,5 +44,5 @@
 			height : 350px;
 			padding-bottom : 50px;
 		}
-		
-     }	
+     }
+}	

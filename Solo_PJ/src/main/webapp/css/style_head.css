@@ -14,21 +14,25 @@
     font-style: normal;
 }
 
-.main{
-	font-family: 'ONE-Mobile-POP';
+
+.head{
+	font-size : 25px;
+	font-weight : bold;
+	font-family: 'InkLipquid';
 }
 
-.main .img_slide {
-	margin-bottom: 10px;
+.head .logo{
+	float : left;
 }
 
-.main .img_slide img{
-	width : 100%;
-	height : auto;
+.head .logo .d-flex {
+	height : 250px;
+	
 }
 
-.main .sbb{
-	margin: 10px;
+.head .logo img{
+	width : 100px;
+	height : 100px;
 }
 
 .bd-placeholder-img {
@@ -45,12 +49,10 @@
        }
        .head .logo{
 			height : 200px;
-			padding-top : -50px;	
 		}
        .head .logo img{
 			width : 350px;
-			height : 350px;
-			padding-bottom : 50px;
+			height : 250px;
 		}
 		
      }	

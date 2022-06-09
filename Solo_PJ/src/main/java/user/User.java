@@ -4,8 +4,23 @@ public class User {
 	private String userID;
 	private String userPassword;
 	private String userName;
-	private String userGender;
 	private String userEmail;
+	private String userAddress;
+	private String userRole;
+	
+	
+	public String getUserAddress() {
+		return userAddress;
+	}
+	public void setUserAddress(String userAddress) {
+		this.userAddress = userAddress;
+	}
+	public String getUserRole() {
+		return userRole;
+	}
+	public void setUserRole(String userRole) {
+		this.userRole = userRole;
+	}
 	public String getUserID() {
 		return userID;
 	}
@@ -24,18 +39,11 @@ public class User {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getUserGender() {
-		return userGender;
-	}
-	public void setUserGender(String userGender) {
-		this.userGender = userGender;
-	}
 	public String getUserEmail() {
 		return userEmail;
 	}
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-	
 	
 }
