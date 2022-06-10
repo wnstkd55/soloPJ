@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import = "user.User" %>
+<%@ page import = "user.UserDAO" %>
+<%@ page import = "java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,14 +19,42 @@
 <title> jsp 게시판 웹사이트</title>
 </head>
 <body>
+	<%
+	//로그인 한사람이면 userID라는 변수에 해당 아이디가 담기고 그렇지 않으면 null값
+		String userID = null;
+		if (session.getAttribute("userID") != null) {
+			userID = (String) session.getAttribute("userID");
+		}
+		
+		UserDAO userDAO = new UserDAO();
+		String userName = null;
+		String userEmail = null;
+		String userAddress = null;
+		String userRole = null;
+		
+		ArrayList<User> ulist = userDAO.SUserInfoList(userID);
+		
+		for(int i=0; i<ulist.size(); i++){
+			if(userID.equals(ulist.get(i).getUserID())){
+				userName = ulist.get(i).getUserName();
+				userEmail = ulist.get(i).getUserEmail();
+				userAddress = ulist.get(i).getUserAddress();
+				userRole = ulist.get(i).getUserRole();
+			}
+		}
+		
+		//System.out.println(userName + " " + userEmail+ " " +userAddress+ " " +userRole);
+	%>
+	
 	<jsp:include page="head.jsp"/>
 	<!-- 로그인 폼 -->
 	<div class="container">
 	<div data-aos = "fade-left">
 		<div class="input-form-backgroud row">
 		      <div class="input-form col-md-12 mx-auto" style="max-width:480px;">
-		        <h3 class="mb-2">회원가입</h3>
-		        <form class="validation-form" novalidate method="post" action="joinAction.jsp">
+		        <h3 class="mb-2">회원 정보 수정</h3>
+		        <br>
+		        <form class="validation-form" novalidate method="post" action="UserUpdateAction.jsp">
 		          <div class="row">
 		            <div class="col-md-6 mb-3">
 		              <label for="name">아이디</label>

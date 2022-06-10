@@ -43,7 +43,7 @@ public class ProductDAO {
 		//Bbs에서 나오는 걸 보관할수 있는 인스턴스를 생성
 		ArrayList<Product> plist = new ArrayList<Product>();
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt = conn.prepareStatement(SQL);
 			rs = pstmt.executeQuery(SQL);
 			while (rs.next()) {
 				Product pp = new Product();

@@ -43,10 +43,7 @@ public class UserDAO {
 		 String SQL = "SELECT userPassword FROM USER01 WHERE userID = ?";
 		 
 		 try {
-			 //pstmt: prepared statement 정해진 sql문장을 db에 삽입하는 형식으로 인스턴스가져옴
 			 pstmt = conn.prepareStatement(SQL);
-			 //sql인젝션 같은 해킹기법을 방해하는것 pstmt를 이용해 하나의 문장을 미리 준비해서 (물음표사용)
-			 //물음표에 해당하는 내용을 유저 아이디로, 매개변수로 이용 1)존재하는지 2)비번 무엇인지
 			 pstmt.setString(1, userID);
 			 //rs:result set에 결과보관
 			 rs = pstmt.executeQuery();
@@ -54,7 +51,7 @@ public class UserDAO {
 			 if(rs.next()) {
 				 //패스워드 일치한다면 실행
 				 if(rs.getString(1).equals(userPassword)) {
-					 return 1;//로그니성공
+					 return 1;//로그인성공
 				 }else
 					 return 0;//비번 불일치
 			 }return -1;//아이디 없음
@@ -81,12 +78,79 @@ public class UserDAO {
 		 return -1;//DB오류
 	 }
 	 
-	 public ArrayList<User> getUList(String userID){
-		 String SQL = "SELECT * FROM USER01 WHERE USERID = ?";
+	 //역할 찾기
+	 public String findRole(String userID) {
+		 String SQL = "SELECT userRole FROM user01 where userID = ?";
+		 String ab = "";
+		 try {
+			 pstmt = conn.prepareStatement(SQL);
+			 pstmt.setString(1, userID);
+			 rs=pstmt.executeQuery();
+			 
+			 if (rs.next()) {
+			 ab = rs.getString(1);
+			 }
+		 }catch (Exception e) {
+			 e.printStackTrace();
+		}
+		 return ab;
+	 }
+	 
+	 public int updateUser(String userName, String userEmail, String userAddress, String userRole, String userId) {
+		 String SQL = "UPDATE user01 SET userName = ?, userEmail = ?, userAddress = ?, userRole = ? where userId = ?";
+		 
+		 try {
+			 pstmt = conn.prepareStatement(SQL);
+			 pstmt.setString(1, userName);
+			 pstmt.setString(2, userEmail);
+			 pstmt.setString(3, userAddress);
+			 pstmt.setString(4, userRole);
+			 pstmt.setString(5, userId);
+			 
+			 return pstmt.executeUpdate();
+			 
+		 }catch(Exception e) {
+			 e.printStackTrace();
+			 System.out.println("회원수정 오류");
+		 }
+		 return -1;
+	 }
+	 
+	 //리스트 만들기(모든 출력을 위한 리스트)
+	 public ArrayList<User> getUList(){
+		 String SQL = "SELECT * FROM USER01";
 		 ArrayList<User> ulist = new ArrayList<User>();
 		 try {
 			 pstmt = conn.prepareStatement(SQL);
-			 pstmt.setString(1,"USERID");
+			 rs = pstmt.executeQuery(SQL);
+			 
+			 while(rs.next()) {
+				 User user = new User();
+				 user.setUserID(rs.getString(1));
+				 user.setUserPassword(rs.getString(2));
+				 user.setUserName(rs.getString(3));
+				 user.setUserEmail(rs.getString(4));
+				 user.setUserAddress(rs.getString(5));
+				 user.setUserRole(rs.getString(6));
+				 
+				 ulist.add(user);
+			 }
+		 }catch(Exception e) {
+			 e.printStackTrace();
+			 System.out.println("유저리스트 오류");
+		 }
+		return ulist;
+	 }
+	 
+	 
+	 
+	 //리스트 만들기(모든 출력을 위한 리스트)
+	 public ArrayList<User> SUserInfoList(String userId){
+		 String SQL = "SELECT * FROM USER01 where userID = ?";
+		 ArrayList<User> ulist = new ArrayList<User>();
+		 try {
+			 pstmt = conn.prepareStatement(SQL);
+			 pstmt.setString(1, userId);
 			 rs = pstmt.executeQuery();
 			 
 			 while(rs.next()) {
@@ -97,6 +161,8 @@ public class UserDAO {
 				 user.setUserEmail(rs.getString(4));
 				 user.setUserAddress(rs.getString(5));
 				 user.setUserRole(rs.getString(6));
+				 
+				 ulist.add(user);
 			 }
 		 }catch(Exception e) {
 			 e.printStackTrace();

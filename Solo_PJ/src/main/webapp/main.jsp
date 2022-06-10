@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ page import="java.io.PrintWriter"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,9 +43,9 @@
 				  </button>
 				</div>
 			</div>
-			<div class = sbb>
-				<div class="row mb-2">
-				    <div class="col-md-6">
+			<div class = "sbb" style = "margin-top:10px;">
+				<div class="row mb-2" style="margin-left:5%;">
+				    <div class="col-md-6" style = "max-width : 500px; margin-right:10px;">
 				      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 				        <div class="col p-4 d-flex flex-column position-static">
 				          <strong class="d-inline-block mb-2 text-primary">새로나온 작품</strong>
@@ -58,7 +59,7 @@
 				        </div>
 				      </div>
 				    </div>
-				    <div class="col-md-6">
+				    <div class="col-md-6" style = "max-width : 500px;">
 				      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 				        <div class="col p-4 d-flex flex-column position-static">
 				          <strong class="d-inline-block mb-2 text-success">작품자랑하기</strong>

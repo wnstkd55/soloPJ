@@ -57,6 +57,7 @@ a, a:hover {
 							
 							ArrayList<Product> list = ppDAO.getList();
 							for (int i = 0; i < list.size(); i++) {
+								
 						%>
 						<tr>
 							<td><%=list.get(i).getPcode()%></td>

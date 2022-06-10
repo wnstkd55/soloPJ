@@ -38,9 +38,9 @@
 		} else if (result == 0) {//로그인 실패
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("alert('비밀번호가 틀립니다.')");
+			script.println("alert('비밀번호가 틀립니다.');");
 			script.println("history.back()");
-			script.println("<script>");
+			script.println("</script>");
 		} else if (result == -1) {//아이디 없음
 			PrintWriter script = response.getWriter();
 			script.println("<script>");

@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ page import="java.io.PrintWriter"%>
+<%@ page import = "user.User" %>
+<%@ page import = "user.UserDAO" %>
+<jsp:useBean id="user" class="user.User" scope="page" />
+<jsp:setProperty name="user" property="userRole" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,26 +17,17 @@
 <body>
 	<%
 	//로그인 한사람이면 userID라는 변수에 해당 아이디가 담기고 그렇지 않으면 null값
-	
 		String userID = null;
+		String userRole = null;
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 		}
+		UserDAO userDAO = new UserDAO();
+		userRole = userDAO.findRole(userID);
+		//System.out.println("아이디: "+userID);
+		//System.out.println("역할: "+userRole);
 	%>
-	<!-- 네비게이션 -->
-	<!-- 
-	<nav class="navbar navbar-default">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-				aria-expaned="false">
-				<span class="icon-bar"></span><span class="icon-bar"></span><span
-					class="icon-bar"></span>
-			</button>
-			</div>
-			<div class="collaspe navbar-collapse"
-				id="#bs-example-navbar-collapse-1">
-	 -->
+	
 	<div class = "head">
 	  <header class="p-3 mb-3 border-bottom">
 	    <div class="container">
@@ -52,8 +48,6 @@
 						//로그인 안된경우
 						if(userID == null) {
 					%>
-				
-					
 						<div class="dropdown text-end">
 					          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
 					            <img src="./images/user1.png" alt="user" width="32" height="32" class="rounded-circle">
@@ -63,11 +57,13 @@
 					            <li><a class="dropdown-item" href="join.jsp">회원가입</a></li>
 					          </ul>
 		       		 	</div>
-		       		 	
 	       		 	
 					<%
 						//로그인 된경우
-						} else {
+						} else if(userID != null) {
+							if(userRole.equals("관리자")){
+								
+							
 					%>
 						 <div class="dropdown text-end">
 					          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -80,8 +76,23 @@
 		       		 	</div>
 	       		 	
 					<%
+						}else{
+					%>
+						<div class="dropdown text-end">
+					          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+					            <img src="./images/user1.png" alt="user" width="32" height="32" class="rounded-circle">
+					          </a>
+					          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+					            <li><a class="dropdown-item" href="u_info.jsp">회원정보</a></li>
+					            <li><a class="dropdown-item" href="logoutAction.jsp">로그아웃</a></li>
+					          </ul>
+		       		 	</div>
+					
+					<%
+							}
 						}
 					%>
+					
 				</div>
 				</div>
 			</div>
