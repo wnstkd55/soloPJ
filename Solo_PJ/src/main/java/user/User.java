@@ -1,5 +1,6 @@
 package user;
 
+
 public class User {
 	private String userID;
 	private String userPassword;
@@ -7,7 +8,6 @@ public class User {
 	private String userEmail;
 	private String userAddress;
 	private String userRole;
-	
 	
 	public String getUserAddress() {
 		return userAddress;

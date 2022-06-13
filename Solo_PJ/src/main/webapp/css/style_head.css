@@ -21,18 +21,12 @@
 	font-family: 'InkLipquid';
 }
 
-.head .logo{
-	float : left;
+.logo{
+	position: relative;
 }
 
-.head .logo .d-flex {
-	height : 250px;
-	
-}
-
-.head .logo img{
-	width : 100px;
-	height : 100px;
+.logo .img-fluid{
+	position:absolute;
 }
 
 .bd-placeholder-img {
@@ -47,12 +41,5 @@
        .bd-placeholder-img-lg {
          font-size: 3.5rem;
        }
-       .head .logo{
-			height : 200px;
-		}
-       .head .logo img{
-			width : 350px;
-			height : 250px;
-		}
 		
      }	

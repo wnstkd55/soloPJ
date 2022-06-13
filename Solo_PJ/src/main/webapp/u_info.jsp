@@ -93,13 +93,14 @@
 		          </div>
 		          <div class="row">
 		           <div class="mb-3">
-		            <label for="address">역할</label>
 		            <input type="text" class="form-control" name="userAddress" placeholder="<%=userRole %>" value="" readonly >
 		            <div class="invalid-feedback">
 		              역할입니다
 		            </div>
 		            <br>
-		            <button class="btn btn-primary btn-lg btn-block" onclick = "location.href='u_update.jsp'" type = "button">수정 하기</button>
+		            <div class="d-grid gap-2 d-md-flex justify-content-center">
+		            <button class="btn btn-outline-primary" onclick = "location.href='u_update.jsp'" type = "button">수정 하기</button>
+		          	</div>
 		          </div>
 		          </div>
 		        </form>

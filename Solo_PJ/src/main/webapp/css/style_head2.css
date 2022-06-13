@@ -1,66 +1,29 @@
-@charset "EUC-KR";
-
-#nav-1 {
-  position: relative;
-  border: none;
-  border-radius: 10em;
-  display: flex;
-  list-style: none;
-  background: #f5f5f5;
-  box-shadow: 20px 40px 40px #00000033;
-  padding: 10px;
-}
-#nav-1 li {
-  margin: 0px;
-}
-#nav-1 li a {
-  position: relative;
-  padding: 0.6em 2em;
-  font-size: 18px;
-  border: none;
-  outline: none;
-  color: #333;
-  display: inline-block;
-  text-decoration: none;
-  z-index: 3;
-}
-#nav-1 .slide1,
-#nav-1 .slide2 {
-  position: absolute;
-  display: inline-block;
-  height: 3em;
-  border-radius: 10em;
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1.05);
-}
-#nav-1 .slide1 {
-  background-color: yellowgreen;
-  z-index: 2;
-}
-#nav-1 .slide2 {
-  opacity: 0;
-  background: #ddd;
-  z-index: 1;
-}
-#nav-1 .squeeze {
-  transform: scale(0.9);
+@font-face {
+    font-family: 'HSYuji-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/HSYuji-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+*{
+	text-decoration: none;
 }
 
-html,
-body {
-  height: 100%;
+.head .logo{
+	width: 250px;
+	hegith: 250px;
+	position: relative;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #e0e0e0;
-  font-family: Montserrat, sans-serif;
-  line-height: 1.5;
+.head .logo img{
+	width: 200px;
+	height: 150px;
 }
+
+.head .nav-item a, li{
+ 	color: #ffffff;
+ 	font-family: 'HSYuji-Regular';
+ }
+ 

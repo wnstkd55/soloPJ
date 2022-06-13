@@ -58,14 +58,14 @@
 		          <div class="row">
 		            <div class="col-md-6 mb-3">
 		              <label for="name">아이디</label>
-		              <input type="text" class="form-control" name="userID" placeholder="아이디" value="" required>
+		              <input type="text" class="form-control" name="userID" placeholder="<%=userID %>" value="<%=userID %>" required readonly>
 		              <div class="invalid-feedback">
 		                아이디를 입력해주세요.
 		              </div>
 		            </div>
 		            <div class="col-md-6 mb-3">
 		              <label for="nickname">이름</label>
-		              <input type="text" class="form-control" name="userName" placeholder="이름을 입력해주세요." value="" required>
+		              <input type="text" class="form-control" name="userName" placeholder="<%=userName %>" value="" required>
 		              <div class="invalid-feedback">
 		                이름을 입력해주세요.
 		              </div>
@@ -73,21 +73,21 @@
 		          </div>
 					<div class="mb-3">
 		            <label for="password">비밀번호</label>
-		            <input type="password" class="form-control" name="userPassword" placeholder="비밀번호를 입력해주세요" required>
+		            <input type="password" class="form-control" name="userPassword" placeholder="" readonly>
 		            <div class="invalid-feedback">
 		              비밀번호를 입력해주세요.
 		            </div>
 		          </div>
 		          <div class="mb-3">
 		            <label for="email">이메일</label>
-		            <input type="email" class="form-control" name="userEmail" placeholder="you@example.com" required>
+		            <input type="email" class="form-control" name="userEmail" placeholder="<%=userEmail %>" required>
 		            <div class="invalid-feedback">
 		              이메일을 입력해주세요.
 		            </div>
 		          </div>
 		          <div class="mb-3">
 		            <label for="address">주소</label>
-		            <input type="text" class="form-control" name="userAddress" placeholder="00시 00동..." required>
+		            <input type="text" class="form-control" name="userAddress" placeholder="<%=userAddress %>" required>
 		            <div class="invalid-feedback">
 		              주소를 입력해주세요.
 		            </div>
@@ -111,7 +111,9 @@
 		            <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
 		          </div>
 		          <div class="mb-4"></div>
-		          <button class="btn btn-primary btn-lg btn-block" type="submit">가입 완료</button>
+		          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+		          <button class="btn btn-outline-primary" type="submit">수정 완료</button>
+		          </div>
 		        </form>
 		      </div>
 		    </div>

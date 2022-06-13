@@ -14,14 +14,25 @@
     font-style: normal;
 }
 
-.board .btn_pv{
-	width: 100px;
-	background-color: orange;
+*{
+	text-decoration-line: none;
 }
-.board .btn_nx{
-	width: 100px;
-	background-color: yellow;
+
+a, a:hover {
+	color: #000000;
+	text-decoration: none;
 }
+
+.card-title {
+	font-family: 'ONE-Mobile-POP';
+	font-size: 50px;
+	font-weight: normal;
+}
+
+.card-body {
+	font-size: 25px;
+}
+
 
 .bd-placeholder-img {
        font-size: 1.125rem;
@@ -35,6 +46,5 @@
        .bd-placeholder-img-lg {
          font-size: 3.5rem;
        }
-      
-     }
-}	
+		
+     }	

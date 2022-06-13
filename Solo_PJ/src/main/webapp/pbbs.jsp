@@ -2,9 +2,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="pbbs.ProductDAO"%>
-<%@ page import="pbbs.Product"%>
+<%@ page import="product.ProductDAO"%>
+<%@ page import="product.Product"%>
 <%@ page import="java.util.ArrayList"%>
+<%@ page import = "user.User" %>
+<%@ page import = "user.UserDAO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +18,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <link rel="stylesheet" href="javascript/jquery-1.12.3.js">
-<link rel="stylesheet" href="css/style_pbbs.css">
+<link rel="stylesheet" href="./css/style_pbbs.css">
 <title>jsp 게시판 웹사이트</title>
 <style type="text/css">
 a, a:hover {
@@ -29,51 +31,17 @@ a, a:hover {
 	<%
 		//로긴 한사람이면 userID라는 변수에 해당 아이디가 담기고 그렇지 않으면 null값
 		String userID = null;
+		String userRole = null;
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 		}
-		
+		UserDAO userDAO = new UserDAO();
+		userRole = userDAO.findRole(userID);	//역할찾기
 	%>
 	<jsp:include page="head.jsp"/>
 	<!-- 게시판 -->
-	<div class = "board">
+	<div class = "board" style = "background-color: #F8F9FA; margin-left: 80px; margin-right:80px;">
 		<div class="container">
-			<div class="row">
-			<!-- 
-				<table class="table table-striped"
-					style="text-align: center; border: 1ps solid #dddddd">
-					<thead>
-						<tr>
-							<th style="background-color: #eeeeee; text-align: center;">카테고리</th>
-							<th style="background-color: #eeeeee; text-align: center;">작품이름</th>
-							<th style="background-color: #eeeeee; text-align: center;">등록한사람</th>
-							<th style="background-color: #eeeeee; text-align: center;">간단설명</th>
-							<th style="background-color: #eeeeee; text-align: center;">가격</th>
-						</tr>
-					</thead>
-					<tbody>
-						<%
-							ProductDAO ppDAO = new ProductDAO();
-							
-							ArrayList<Product> list = ppDAO.getList();
-							for (int i = 0; i < list.size(); i++) {
-								
-						%>
-						<tr>
-							<td><%=list.get(i).getPcode()%></td>
-							<td><%=list.get(i).getPname()%></td>
-							<td><%=list.get(i).getRegid()%></td>
-							<td><%=list.get(i).getPinfo()%></td>
-							<td><%=list.get(i).getPprice()%></td>
-							</tr>
-						<%
-							}
-						%>
-					</tbody>
-				</table>
-				 -->
-	
-			</div>
 			<div class="album py-5 bg-light">
 			    <div class="container">
 			      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -84,24 +52,24 @@ a, a:hover {
 						for (int i = 0; i < list1.size(); i++) {
 					%>
 			        <div class="col">
-			        <a href = "#">
+			        <a href = "./p_view.jsp?pdId=<%=list1.get(i).getPdId() %>" style="text-decoration:none">
 			          <div class="card shadow-sm">
-			            	<img class="bd-placeholder-img card-img-top" width="100%" height="225" src="./images/<%=list.get(i).getPcode()%>.jpg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/>
+			            	<img class="bd-placeholder-img card-img-top" width="100%" height="225" src="./images/product/<%=list1.get(i).getPdPic()%>" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/>
 			            <div class="card-body">
-			              <p class="card-text"><%=list1.get(i).getPinfo()%></p>
-			              <p class="card-text">작가이름 <%=list1.get(i).getRegid()%></p>
+			              <span class="card-text" style = "color: black; font-size: 15px;"> <%=list1.get(i).getPdName()%></span><br>
+			              <span class="card-text" style = "color: #6C757D; font-size: 13px;"> <%=list1.get(i).getRgId()%></span>
 			              <div class="d-flex justify-content-between align-items-center">
-			                <div class="btn-group">
-			                  <button type="button" class="btn btn-sm btn-outline-secondary">즉시구매하기</button>
+			                <div class="btn-group" style="float: right;">
+			                  <button type="button" class="btn btn-sm btn-outline-secondary">장바구니에 넣기</button>
 			                </div>
-			                <small class="text-muted">가격 <%=list1.get(i).getPprice()%> 원</small>
+			                <small class="text-muted">가격 <%=list1.get(i).getPdPrice()%> 원</small>
 			              </div>
-			            </div>
+			            </div>	
 			            </div>
 			          </a>
 			        </div>
 			        <%
-						}
+			        }
 					%>
 			      </div>
 			    </div>
@@ -111,15 +79,21 @@ a, a:hover {
 				<%
 					//if logined userID라는 변수에 해당 아이다가 담기고 if not null
 					if (session.getAttribute("userID") != null) {
-				%>
-				<a href="#" class="btn btn-primary pull-right">등록하기</a>
+						if(userRole.equals("관리자") || userRole.equals("판매자")){
+							
+						
+				%><div class="d-grid gap-2 d-md-flex justify-content-md-end">
+				<a href="regpd.jsp" class="btn btn-outline-primary pull-right">등록하기</a>
+				</div>
 				<%
+						} 
 					} else {
-				%>
+				%><div class="d-grid gap-2 d-md-flex justify-content-md-end">
 				<button class="btn btn-primary pull-right"
 					onclick="if(confirm('로그인 하세요'))location.href='login.jsp';"
-					type="button">등록하기</button>
+					type="button">등록하기</button></div>
 					<%
+						
 					}
 				%>
 		</div>

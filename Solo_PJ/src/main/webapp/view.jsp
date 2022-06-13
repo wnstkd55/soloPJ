@@ -69,18 +69,20 @@
 					.replaceAll("\n", "<br/>") -->
 				</tbody>
 			</table>
-			<a href="bbs.jsp" class="btn">목록</a>
+			<div class="d-grid gap-2 col-6 mx-auto">
+			<a href="bbs.jsp" class="btn btn-outline-primary">목록</a>
 			<%
 				//글작성자 본인일시 수정 삭제 가능
 				if (userID != null && userID.equals(bbs.getUserID())) {
 			%>
-			<a href="update.jsp?bbsID=<%=bbsID%>" class="btn">수정</a>
-			<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="deleteAction.jsp?bbsID=<%= bbsID %>" class="btn">삭제</a>
+			
+			<a href="update.jsp?bbsID=<%=bbsID%>" class="btn btn-outline-secondary">수정</a>
+			<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="deleteAction.jsp?bbsID=<%= bbsID %>" class="btn btn-outline-danger">삭제</a></div>
 			<%
 				}
 			%>
+			</div>
 		</div>
-	</div>
 	<jsp:include page="footer.jsp"/>
 
 </body>

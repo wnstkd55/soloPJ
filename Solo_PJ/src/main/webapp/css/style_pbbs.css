@@ -15,7 +15,7 @@
 }
 
 *{
-	text-decoration: none;
+	text-decoration-line: none;
 }
 
 a, a:hover {
@@ -23,11 +23,17 @@ a, a:hover {
 	text-decoration: none;
 }
 
-
 .board img{
 	width : auto;
 	height : 225px;
 }
+
+.board .col>a:hover img {
+  transform: scale(1.5);
+  transition: transform 1s;
+  filter: brightness(70%);
+}
+
 .bd-placeholder-img {
        font-size: 1.125rem;
        text-anchor: middle;
@@ -40,14 +46,5 @@ a, a:hover {
        .bd-placeholder-img-lg {
          font-size: 3.5rem;
        }
-      .head .logo{
-			height : 200px;
-			padding-top : -50px;	
-		}
-       .head .logo img{
-			width : 350px;
-			height : 350px;
-			padding-bottom : 50px;
-		}
 		
      }	

@@ -19,3 +19,13 @@ create table bbs(
 );
 
 select * from bbs;
+
+// 카테고리 설정
+	A : 악세서리
+	B : 술
+	C : 도자기
+	D : 생활용품
+	E : 디저트
+	F : 음식
+	G : 옷
+	H : 향수,디퓨저

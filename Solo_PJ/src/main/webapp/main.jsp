@@ -18,7 +18,7 @@
 </head>
 <body>
 	<jsp:include page = "head.jsp" flush = "false"/>
-	
+	<br>
 	<div class = "main">
 	<div data-aos="zoom-in">
 		<div class="container">
@@ -55,7 +55,7 @@
 				          <a href="#" class="stretched-link">자세히 보기</a>
 				        </div>
 				        <div class="col-auto d-none d-lg-block">
-				          <img class="bd-placeholder-img" width="200" height="250" src="./images/p10.jpg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%"/>
+				          <img class="bd-placeholder-img" width="200" height="250" src="./images/product/p10.jpg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%"/>
 				        </div>
 				      </div>
 				    </div>
@@ -69,7 +69,7 @@
 				          <a href="#" class="stretched-link">자세히 보기</a>
 				        </div>
 				        <div class="col-auto d-none d-lg-block">
-							<img class="bd-placeholder-img" width="200" height="250" src="./images/p11.jpg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%"/>
+							<img class="bd-placeholder-img" width="200" height="250" src="./images/product/p11.jpg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%"/>
 				        </div>
 				      </div>
 				    </div>

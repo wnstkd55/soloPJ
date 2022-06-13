@@ -142,8 +142,6 @@ public class UserDAO {
 		return ulist;
 	 }
 	 
-	 
-	 
 	 //리스트 만들기(모든 출력을 위한 리스트)
 	 public ArrayList<User> SUserInfoList(String userId){
 		 String SQL = "SELECT * FROM USER01 where userID = ?";
@@ -170,4 +168,29 @@ public class UserDAO {
 		 }
 		return ulist;
 	 }
+	 
+	 public User getUser(String userID) {
+			String SQL = "SELECT * FROM user01 WHERE userID = ?";
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(SQL);
+				pstmt.setString(1, userID);
+				rs = pstmt.executeQuery();
+				
+				if (rs.next()) {
+					User user = new User();
+					user.setUserID(rs.getString(1));
+					user.setUserPassword(rs.getString(2));
+					user.setUserName(rs.getString(3));
+					user.setUserEmail(rs.getString(4));
+					user.setUserAddress(rs.getString(5));
+					user.setUserRole(rs.getString(6));
+
+					return user;
+
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
  }
