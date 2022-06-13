@@ -36,7 +36,7 @@ a, a:hover {
 			userID = (String) session.getAttribute("userID");
 		}
 		UserDAO userDAO = new UserDAO();
-		userRole = userDAO.findRole(userID);	//역할찾기
+		userRole = userDAO.findRole(userID);	//유저아이디로 역할 찾기
 	%>
 	<jsp:include page="head.jsp"/>
 	<!-- 게시판 -->
