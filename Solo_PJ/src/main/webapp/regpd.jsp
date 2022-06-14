@@ -49,7 +49,7 @@
 		}
 	%>
 	<div class="container">
-	<div data-aos = "fade-left">
+		<div data-aos = "fade-left">
 		<div class="input-form-backgroud row">
 		      <div class="input-form col-md-12 mx-auto" style="max-width:480px;">
 		        <h3 class="mb-2">상품 등록</h3>
@@ -65,7 +65,7 @@
 		            <br><br><br>
 		            <div class="mb-3">
 		              <label for="rgId">등록자 ID</label>
-		              <input type="text" class="form-control" name="rgId" placeholder="<%=rgId %>" value="<%=rgId %>" readonly>
+		              <input type="text" class="form-control" name="rgId" placeholder="<%=userID %>" value="<%=userID %>" readonly>
 		            </div>
 		          </div>
 					<div class="mb-3">
@@ -102,22 +102,26 @@
 							</div>
 							<div class="form-check form-check-inline">
 							  <input class="form-check-input" type="radio" name="pdCate"  value="D" required>
-							  <label class="form-check-label" for="inlineRadio2">생활용품</label>
+							  <label class="form-check-label" for="inlineRadio2">공예품</label>
 							</div>
 							<div class="form-check form-check-inline">
 							  <input class="form-check-input" type="radio" name="pdCate"  value="E" required>
-							  <label class="form-check-label" for="inlineRadio2">디저트</label>
+							  <label class="form-check-label" for="inlineRadio2">생활용품</label>
 							</div>
 							<div class="form-check form-check-inline">
 							  <input class="form-check-input" type="radio" name="pdCate"  value="F" required>
-							  <label class="form-check-label" for="inlineRadio2">음식</label>
+							  <label class="form-check-label" for="inlineRadio2">디저트</label>
 							</div>
 							<div class="form-check form-check-inline">
 							  <input class="form-check-input" type="radio" name="pdCate"  value="G" required>
-							  <label class="form-check-label" for="inlineRadio2">옷</label>
+							  <label class="form-check-label" for="inlineRadio2">음식</label>
 							</div>
 							<div class="form-check form-check-inline">
 							  <input class="form-check-input" type="radio" name="pdCate"  value="H" required>
+							  <label class="form-check-label" for="inlineRadio2">옷</label>
+							</div>
+							<div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="pdCate"  value="I" required>
 							  <label class="form-check-label" for="inlineRadio2">향수, 디퓨저</label>
 							</div>
 		            </div>

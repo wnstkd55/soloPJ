@@ -158,4 +158,31 @@ public class ProductDAO {
 			 }
 			return plist;
 		 }
+		 
+			//카테고리
+		 public ArrayList<Product> category(String pdCate){
+			 String SQL = "SELECT * FROM product where pdCate = ?";
+			 ArrayList<Product> plist = new ArrayList<Product>();
+			 try {
+				 pstmt = conn.prepareStatement(SQL);
+				 pstmt.setString(1, pdCate);
+				 rs = pstmt.executeQuery();
+				 
+				 while(rs.next()) {
+					 Product pp = new Product();
+					 pp.setPdId(rs.getInt(1));
+					 pp.setPdName(rs.getString(2));
+					pp.setRgId(rs.getString(3)); 
+					pp.setPdPrice(rs.getInt(4));
+					pp.setPdPic(rs.getString(5));
+					pp.setPdExp(rs.getString(6));
+					pp.setPdCate(rs.getString(7));
+					plist.add(pp);
+				 }
+			 }catch(Exception e) {
+				 e.printStackTrace();
+				 System.out.println("카테고리화 오류");
+			 }
+			return plist;
+		 }
 }

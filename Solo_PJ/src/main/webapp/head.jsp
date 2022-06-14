@@ -27,9 +27,8 @@
 		//System.out.println("아이디: "+userID);
 		//System.out.println("역할: "+userRole);
 	%>
-	
-<div class= "head">
 	<div class = "container">
+		<div class= "head">
 		<div class = "logo justify-content-center mx-auto">
 			<a href = "main.jsp">
 				<img class = "img-fluid" alt="로고사진" src="./images/pj_logo.png">

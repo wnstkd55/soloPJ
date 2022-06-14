@@ -33,8 +33,16 @@ a, a:hover {
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 		}
+		
 		UserDAO userDAO = new UserDAO();
 		userRole = userDAO.findRole(userID);	//유저아이디로 역할 찾기
+		
+		ProductDAO productDAO = new ProductDAO();	//카테고리화
+		String pdcate = null;
+		if(request.getParameter("pdCate")!=null){
+			pdcate = (String)request.getParameter("pdCate");
+		}
+		System.out.println("pdCate");
 		
 	%>
 	<jsp:include page="head.jsp"/>
@@ -51,7 +59,7 @@ a, a:hover {
 					      </div>
 					      <div class="collapse navbar-collapse" id="navbarsExample01">
 					        <ul class="navbar-nav me-auto mb-2">
-					          <li class="nav-item">
+					           <li class="nav-item">
 					            <a class="nav-link active" aria-current="page" href="pbbs_cate.jsp?pdCate=A">Accessory</a>
 					          </li>
 					          <li class="nav-item">
@@ -89,7 +97,7 @@ a, a:hover {
 			      	<%
 						ProductDAO ppDAO1 = new ProductDAO();
 						
-						ArrayList<Product> list1 = ppDAO1.getList();
+						ArrayList<Product> list1 = ppDAO1.category("pdCate");
 						for (int i = 0; i < list1.size(); i++) {
 					%>
 			        <div class="col">
@@ -104,7 +112,6 @@ a, a:hover {
 			                  <button type="button" class="btn btn-sm btn-outline-secondary">장바구니에 넣기</button>
 			                </div>
 			                <small class="text-muted">가격 <%=list1.get(i).getPdPrice()%> 원</small>
-			                <small class="text-muted" style="display:none;">가격 <%=list1.get(i).getPdCate()%> 원</small>
 			              </div>
 			            </div>	
 			            </div>
