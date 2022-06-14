@@ -27,47 +27,80 @@
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 		}
-		UserDAO userDAO = new UserDAO();
+	%>
+	<%
+		ArrayList<Cart> cartlist = null;
+		Object obj = session.getAttribute("cart");
 		
-		String pdPic = (String)request.getParameter("pdpic");
-		String pdName = (String)request.getParameter("pdname");
-		ArrayList<String> productlist = (ArrayList<String>)session.getAttribute("ArrayList");
-		String pdPrice = (String)(request.getParameter("pdprice"));
-		String rgId = (String)request.getParameter("rgId");
-		if(productlist==null){ //만약 productlist가 널값이면
-		       productlist = new ArrayList<String>(); //ArrayList를 만들어줌
-		    }
-	   productlist.add(pdPic); //productlist에 값을 넣어준다.
-       productlist.add(pdName); 
-       productlist.add(pdPrice);
-       productlist.add(rgId);
-       
-       session.setAttribute("ArrayList", productlist); //ArrayList 세션에 productlist를 넣어줌 
-     
+		if(obj == null){
+			cartlist = new ArrayList<Cart>();
+		}else{
+			cartlist=(ArrayList<Cart>)obj;
+		}
 		
 	%>
 	<br> 		
 	<div class = "cart">
 		<div class = "container" style = "background-color : #f8f9fa;">	
 			<h3><%=userID %>의 장바구니</h3>
-			<table style="margin-left: auto; margin-right: auto; width:900px; margig-bottom: 20px;">
+			<table style="margin-left: auto; margin-right: auto; width:1000px; margig-bottom: 20px;">
 			    <thead>
 			    <tr>
-			        <th colspan="2">사진</th>
+			    	<th>번호</th>
+			        <th>작품 사진</th>
 			        <th>작품이름</th>
 			        <th>작가</th>
-			        <th>가격</th>
+			        <th>단가</th>
 			        <th>갯수</th>
+			        <th>가격</th>
 			    </tr>
 			    </thead>
 			    <tbody>
+			    <%
+						if(cartlist.size() == 0) {
+				%>
 			    <tr>
-			        <td><img src="./images/product/<%=pdPic %>" width=100px height=100></td>
-			        <td></td>
-			        <td><%=pdName %></td>
-			        <td><%=rgId %></td>
-			        <td><%=pdPrice %></td>
+			        <td colspan="5">
+			        	장바구니에 담긴 상품이 없습니다.
+			        	<a href="pbbs.jsp"></a>
+			        </td>
 			    </tr>
+			    <% 
+					}else{
+						int totalSum = 0, total = 0;
+						for(int i=0; i<cartlist.size(); i++){
+							Cart cart = cartlist.get(i);	
+						
+			    %>
+			    <tr>
+				    <td><%=(i+1)%></td>
+				    <td><img src="<%=cart.getPdPic() %>" style="width:100px; height:100px;"></td>
+				    <td><%=cart.getPdName() %></td>
+				    <td><%=cart.getRgId() %></td>
+				    <td><%=cart.getPdPrice() %></td>
+				    <td><%=cart.getPdAmount() %></td>
+				    <%
+				    	total=cart.getPdPrice() * cart.getPdAmount();
+				    %>
+				    <td><%=total %>
+			    </tr>
+			    <%			
+			    			totalSum+=total;
+						}	//for
+			    %>
+			    <tr align = 'center'>
+					<td colspan= '4'>
+						<input type='button' value='결제하기' onclick='fnPay()' />
+						<input type='button' value='장바구니 비우기' onclick='fnClear()' />
+						<input type='button' value='쇼핑 계속하기' onclick='fnGo()' />
+					</td>
+					<td colspan='3'>
+						<span style="font-weight: bold; font-size:18px;">총 가격 : <%= totalSum %></span>
+					</td>
+				</tr>
+				<%
+					}
+				%>
 			    </tbody>
 			</table>
 		</div>
@@ -75,5 +108,21 @@
 	</div>
 	
 	<jsp:include page="footer.jsp" flush="false"/>
+	
+	<script>
+	function fnPay(){
+		alert("결제 기능을 지원하지 않습니다.");
+	}
+
+	function fnClear(){
+		if(confirm("장바구니를 비우시겠습니까?")) {
+			location.href = "cartclear.jsp";	
+		}
+	}
+
+	function fnGo(){
+		location.href = "pbbs.jsp";
+	}
+	</script>
 </body>
 </html>

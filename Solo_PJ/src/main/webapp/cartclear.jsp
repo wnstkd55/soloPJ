@@ -24,9 +24,9 @@
 <body>
 	<jsp:include page="head.jsp" flush="false"/>
 	<% 
-	session.getAttribute("ArrayList");
-	session.removeAttribute("ArrayList");
-	response.sendRedirect("pbbs.jsp");
+	session.getAttribute("cart");
+	session.removeAttribute("cart");
+	response.sendRedirect("cart.jsp");
 	%>
 	
 	<jsp:include page="footer.jsp" flush="false"/>

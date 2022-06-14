@@ -1,35 +1,54 @@
 package cart;
 
 public class Cart {
-	private String name;	
-	private int price;		
-	private int cnt;
-	
-	public Cart() {}
+	private String pdPic;
+	private String pdName;
+	private String rgId;
+	private int pdPrice;
+	private int pdAmount;
 
-	public Cart(String name, int price, int cnt) {
+	public Cart() {};
+	
+	public Cart(String pdPic,String pdName, String rgId, int pdPrice) {
 		super();
-		this.name = name;
-		this.price = price;
-		this.cnt = cnt;
+		this.pdPic = pdPic;
+		this.pdName = pdName;
+		this.rgId = rgId;
+		this.pdPrice=pdPrice;
 	}
 	
-	public String getName() {
-		return name;
+	public String getPdPic() {
+		return pdPic;
 	}
-	public void setName(String name) {
-		this.name = name;
+	
+	
+	public void setPdPic(String pdPic) {
+		this.pdPic = pdPic;
 	}
-	public int getPrice() {
-		return price;
+	public String getPdName() {
+		return pdName;
 	}
-	public void setPrice(int price) {
-		this.price = price;
+	public void setPdName(String pdName) {
+		this.pdName = pdName;
 	}
-	public int getCnt() {
-		return cnt;
+	public String getRgId() {
+		return rgId;
 	}
-	public void setCnt(int cnt) {
-		this.cnt = cnt;
+	public void setRgId(String rgId) {
+		this.rgId = rgId;
+	}
+	public int getPdPrice() {
+		return pdPrice;
+	}
+	public void setPdPrice(int pdPrice) {
+		this.pdPrice = pdPrice;
+	}
+	
+	public int getPdAmount() {
+		return pdAmount;
+	}
+
+	public void setPdAmount(int pdAmount) {
+		this.pdAmount = pdAmount;
 	}
 }

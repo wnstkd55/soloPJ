@@ -58,8 +58,8 @@
 		        <p class="card-text"><small class="text-muted">작가명 : <%=product.getRgId() %></small></p>
 		        <p class="card-text">가격 : <%=product.getPdPrice() %>원</p>
 		        <div class="d-grid gap-2 d-md-block justify-content-center">
-				  <button class="btn btn-secondary" type="button"onclick="alert('구매기능은 구현이 안됬습니다...')">구매하기</button>
-				  <button class="btn btn-secondary" type="button" onclick="location.href='cart.jsp?pdname=<%= product.getPdName()%>&pdprice=<%= product.getPdPrice()%>&rgId=<%=product.getRgId()%>&pdpic=<%=product.getPdPic()%>'">
+				  <button class="btn btn-secondary" type="button"onclick="location.href='cart.jsp'">장바구니보러가기</button>
+				  <button class="btn btn-secondary" type="button" onclick="location.href='cartPro.jsp?pdname=<%= product.getPdName()%>&pdprice=<%= product.getPdPrice()%>&rgId=<%=product.getRgId()%>&pdpic=<%=product.getPdPic()%>'">
 				  장바구니에담기</button>
 				  <button class="btn btn-secondary" type="button" onclick="location.href='pbbs.jsp'">목록으로돌아가기</button>
 				</div>

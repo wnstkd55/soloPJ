@@ -35,8 +35,8 @@
 			        <input type="checkbox" value="remember-me"> Remember me
 			      </label>
 			    </div>
-			    	<button style ="width:100px;" class="btn btn-primary form-control" type="submit">Sign in</button>
-					<button type="button" style ="width:100px;" class="btn btn-primary form-control" onclick="location.href='join.jsp'" >Join in</button>
+			    	<button style ="width:100px;" class="btn btn-outline-primary form-control" type="submit">Sign in</button>
+					<button type="button" style ="width:100px;" class="btn btn-outline-danger form-control" onclick="location.href='join.jsp'" >Join in</button>
 			    <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
 			  </form>
 			  </div>
