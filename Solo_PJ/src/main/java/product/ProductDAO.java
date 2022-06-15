@@ -161,7 +161,7 @@ public class ProductDAO {
 		 
 			//카테고리
 		 public ArrayList<Product> category(String pdCate){
-			 String SQL = "SELECT * FROM product where pdCate = ?";
+			 String SQL = "SELECT * FROM product WHERE pdCate = ? ORDER BY pdid desc";
 			 ArrayList<Product> plist = new ArrayList<Product>();
 			 try {
 				 pstmt = conn.prepareStatement(SQL);

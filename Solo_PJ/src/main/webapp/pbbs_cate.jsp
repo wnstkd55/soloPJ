@@ -37,12 +37,12 @@ a, a:hover {
 		UserDAO userDAO = new UserDAO();
 		userRole = userDAO.findRole(userID);	//유저아이디로 역할 찾기
 		
-		ProductDAO productDAO = new ProductDAO();	//카테고리화
+		ProductDAO productDAO = new ProductDAO();	//카테고리 진행
 		String pdcate = null;
 		if(request.getParameter("pdCate")!=null){
 			pdcate = (String)request.getParameter("pdCate");
 		}
-		System.out.println("pdCate");
+		//System.out.println(pdcate); 		//카테고리 확인을 위한 출력문
 		
 	%>
 	<jsp:include page="head.jsp"/>
@@ -93,11 +93,14 @@ a, a:hover {
 				</div>
 			<div class="album py-5 bg-light">
 			    <div class="container">
+			    <div class = "cate_img">
+					<img src="images/slide/<%=pdcate %>.jpg" class="img-fluid" alt="카테고리별 사진이 들어갑니다." style="width: 1280px; margin-bottom:20px;">
+				</div>
 			      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 			      	<%
 						ProductDAO ppDAO1 = new ProductDAO();
 						
-						ArrayList<Product> list1 = ppDAO1.category("pdCate");
+						ArrayList<Product> list1 = ppDAO1.category(pdcate);
 						for (int i = 0; i < list1.size(); i++) {
 					%>
 			        <div class="col">
@@ -109,7 +112,7 @@ a, a:hover {
 			              <span class="card-text" style = "color: #6C757D; font-size: 13px;"> <%=list1.get(i).getRgId()%></span>
 			              <div class="d-flex justify-content-between align-items-center">
 			                <div class="btn-group" style="float: right;">
-			                  <button type="button" class="btn btn-sm btn-outline-secondary">장바구니에 넣기</button>
+			                	<button type="button" class="btn btn-sm btn-outline-secondary">작품 자세히보기</button>
 			                </div>
 			                <small class="text-muted">가격 <%=list1.get(i).getPdPrice()%> 원</small>
 			              </div>

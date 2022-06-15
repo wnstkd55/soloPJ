@@ -43,7 +43,7 @@
 	<div class = "cart">
 		<div class = "container" style = "background-color : #f8f9fa;">	
 			<h3><%=userID %>의 장바구니</h3>
-			<table style="margin-left: auto; margin-right: auto; width:1000px; margig-bottom: 20px;">
+			<table style="margin-left: auto; margin-right: auto; width:1000px; margin-bottom: 50px;">
 			    <thead>
 			    <tr>
 			    	<th>번호</th>

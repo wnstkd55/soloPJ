@@ -41,7 +41,7 @@
 		      <a class="nav-link" href="pbbs.jsp">작품구경하기</a>
 		    </li>
 		    <li class="nav-item">
-		      <a class="nav-link" href="#">작품자랑하기</a>
+		      <a class="nav-link" href="mbbs.jsp">작품자랑하기</a>
 		    </li>
 		    <li class="nav-item">
 		      <a class="nav-link" href="bbs.jsp">고객센터</a>
@@ -69,6 +69,7 @@
 		      <ul class="dropdown-menu">
 		        <li><a class="dropdown-item" href="#" style="color:black;"><%=userID %>님 환영합니다!</a></li>
 		        <li><a class="dropdown-item" href="#" style="color:black;">회원관리</a></li>
+		        <li><a class="dropdown-item" href="cart.jsp" style="color:black;">장바구니바로가기</a></li>
 		        <li><hr class="dropdown-divider"></li>
 		        <li><a class="dropdown-item" href="logoutAction.jsp" style="color:black;">logout</a></li>
 		      </ul>
@@ -81,6 +82,7 @@
 		      <ul class="dropdown-menu">
 		        <li><a class="dropdown-item" href="#" style="color:black;"><%=userID %>님 환영합니다!</a></li>
 		        <li><a class="dropdown-item" href="u_info.jsp" style="color:black;">회원정보</a></li>
+		        <li><a class="dropdown-item" href="cart.jsp" style="color:black;">장바구니바로가기</a></li>
 		        <li><hr class="dropdown-divider"></li>
 		        <li><a class="dropdown-item" href="logoutAction.jsp" style="color:black;">logout</a></li>
 		      </ul>
