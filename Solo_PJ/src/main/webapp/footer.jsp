@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style_footer.css">
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>CMM</title>
 </head>
 <body>
 	<div class = "ft">

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>CMM</title>
 </head>
 <body>
 	<script>location.href = "main.jsp"</script>

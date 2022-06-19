@@ -11,7 +11,7 @@
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
 <meta charset="UTF-8">
 <meta name="viewport" content="width-device-width" initial-scale="1">
-<title>Test1</title>
+<title>CMM</title>
 </head>
 <body class = "text-center">
 	<jsp:include page="head.jsp" flush = "false"/>

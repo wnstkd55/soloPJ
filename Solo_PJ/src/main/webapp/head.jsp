@@ -12,7 +12,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="css/style_head2.css">
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>CMM</title>
 </head>
 <body>
 	<%
@@ -68,7 +68,7 @@
 		      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">회원정보</a>
 		      <ul class="dropdown-menu">
 		        <li><a class="dropdown-item" href="#" style="color:black;"><%=userID %>님 환영합니다!</a></li>
-		        <li><a class="dropdown-item" href="#" style="color:black;">회원관리</a></li>
+		        <li><a class="dropdown-item" href="mgmem.jsp" style="color:black;">회원관리</a></li>
 		        <li><a class="dropdown-item" href="cart.jsp" style="color:black;">장바구니바로가기</a></li>
 		        <li><hr class="dropdown-divider"></li>
 		        <li><a class="dropdown-item" href="logoutAction.jsp" style="color:black;">logout</a></li>

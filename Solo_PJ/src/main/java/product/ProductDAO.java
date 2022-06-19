@@ -75,9 +75,9 @@ public class ProductDAO {
 			}
 			return -1; // 데이터베이스 오류
 		}
-	
+		
+		//작품ID에 해당하는 정보 불러오기
 		public Product getProduct(int pdId) {
-			//String SQL = "SELCET * FROM dbo.[BBS] WHERE bbsID = ?";
 			String SQL = "SELECT * FROM product WHERE pdID = ?";
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(SQL);

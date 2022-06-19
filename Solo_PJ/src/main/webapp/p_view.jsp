@@ -18,7 +18,7 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <link rel="stylesheet" href="javascript/jquery-1.12.3.js">
 <link rel="stylesheet" href="css/style_pview.css">
-<title>jsp 게시판 웹사이트</title>
+<title>CMM</title>
 
 </head>
 <body>

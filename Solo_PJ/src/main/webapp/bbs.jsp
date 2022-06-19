@@ -19,7 +19,7 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <link rel="stylesheet" href="javascript/jquery-1.12.3.js">
 <link rel="stylesheet" href="css/style.css">
-<title>jsp 게시판 웹사이트</title>
+<title>CMM</title>
 <style type="text/css">
 a, a:hover {
 	color: #000000;
